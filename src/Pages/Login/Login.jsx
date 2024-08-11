@@ -32,7 +32,7 @@ export default function Login() {
             <section className=' min-h-[100vh] pt-[70px] p-3 flex justify-center items-center backroundImage    '>
                 <div className=" container   shadow-2xl text-white flex flex-col items-center   p-5  rounded-2xl border-[2px] gap-3  md:w-[60%]  ">
                     <h1 className='font-extrabold text-3xl '>Sign In  </h1>
-                    <p>Get your gold safely delivered to your door</p>
+                    <p className='text-center'>Get your gold safely delivered to your door</p>
                     <form onSubmit={formik.handleSubmit} className=' text-white p-3 flex flex-col gap-3 w-full' >
                         <div>
                             <TextField label="User Name" onBlur={formik.handleBlur} type='text' name='username' value={formik.values.username} onChange={formik.handleChange} className='custom-textfield' />

@@ -5,8 +5,8 @@ import Cookies from 'js-cookie';
 export const Usercontext = createContext("")
 export default function UserProvider({ children }) {
     const expirationDays = 1;
-    const [token , SetToken] = useState(Cookies.get("authToken"))
-    const[tokenInfo , SetTokenInfo] = useState(JSON.parse(localStorage.getItem("tokeninfo")))
+    const [token, SetToken] = useState(Cookies.get("authToken")) // State Handel the authentication token using Cookies 
+    const [tokenInfo, SetTokenInfo] = useState(JSON.parse(localStorage.getItem("tokeninfo"))) // State Handle Token Data to display it in the profile component
     async function SendData({ EndpointPath, values, onSuccess }) {
         try {
             const options = {
@@ -15,18 +15,15 @@ export default function UserProvider({ children }) {
                 data: values,
             }
             const { data } = await axios.request(options)
-            console.log(data);
             toast.success(data.message.en)
-            if (onSuccess) onSuccess() 
-            if(data.data)
-            {
+            if (onSuccess) onSuccess() // for navigate user between components
+            if (data.data) {
                 console.log(data.data.accessToken);
                 Cookies.set('authToken', data.data.accessToken, { expires: expirationDays })
                 SetToken(Cookies.get("authToken"))
-                localStorage.setItem("tokeninfo" , JSON.stringify(data.data.user)  )
+                localStorage.setItem("tokeninfo", JSON.stringify(data.data.user))
                 SetTokenInfo(data.data.user)
                 console.log(JSON.parse(localStorage.getItem("tokeninfo")));
-                
             }
 
         } catch (error) {
@@ -52,16 +49,31 @@ export default function UserProvider({ children }) {
                         Dismiss
                     </button>
                 </div>
-            ));
+            )) // toast for messages to explain the requests from Api
         }
 
-    }
-    function logout(){
-        SetToken(null)
-        Cookies.remove('authToken')
-    }
-    return <Usercontext.Provider value={{ SendData , token , logout , tokenInfo }}>
+    } // Function to post data to Api With a BaseUrl and dynamic values , Endpoints and navigate user between  login and registration components.
+    async function logout() {
+        try {
+            const options = {
+                url: `https://dev.backend-api.goldady.com/user-api/auth/logout`,
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+            }
+            const { data } = await axios.request(options)
+            SetToken(null)
+            Cookies.remove('authToken')
+            toast.success(data.message.en)
+        } catch (error) {
+            console.log(error);
+        }
+
+    } // Function Handel Logout with api and return User to the Login page
+    return <Usercontext.Provider value={{ SendData, token, logout, tokenInfo }}>
         {children}
     </Usercontext.Provider>
-
 }
+
+// Make this context for the 

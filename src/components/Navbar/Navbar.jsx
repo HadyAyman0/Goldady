@@ -7,33 +7,17 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { NavLink } from 'react-router-dom';
 import { Usercontext } from '../../Context/User.context';
-import { AddBox } from '@mui/icons-material';
-
+import img1 from '../../assets/Goldady-logo.png'
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
   const { logout, token } = React.useContext(Usercontext)
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
@@ -41,7 +25,7 @@ function Navbar() {
       <Container maxWidth="xl">
         <Toolbar sx={{ display: "flex", justifyContent: "space-between", backgroundColor: "transparent" }} disableGutters>
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <img src="https://cdn.goldady.com/images/front-end/1708167878.png" className='w-[30px] h-[30px] object-cover mr-1' alt="Logo" />
+            <img src={img1} className='w-[30px] h-[30px] object-cover mr-1' alt="Logo" />
             <Typography
               variant="h6"
               noWrap
@@ -62,18 +46,23 @@ function Navbar() {
           </Box>
           <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex', gap: "15px" }, }}>
             {token ?
-
               <NavLink >
                 <i onClick={logout} className="fa-solid fa-right-from-bracket"></i>
               </NavLink>
               : <div className='flex gap-3'>
                 <NavLink
+                  className={({ isActive }) => {
+                    return `flex items-center lg:hover:before:w-full before:transition-[width] before:duration-300 before:h-0  lg:hover:before:h-[0.9px] before:absolute before:bg-green-500 before:bottom-[-2px] before:left-0  relative before:w-0 hover:text-green-500 transition-colors ${isActive ? `font-extrabold text-green-500 before:w-full ` : ""} `
+                  }}
                   to="/auth/register"
                 >
                   Registrition
                 </NavLink>
                 <NavLink
                   to="/auth/login"
+                  className={({ isActive }) => {
+                    return `flex items-center lg:hover:before:w-full before:transition-[width] before:duration-300 before:h-0  lg:hover:before:h-[0.9px] before:absolute before:bg-green-500 before:bottom-[-2px] before:left-0  relative before:w-0 hover:text-green-500 transition-colors ${isActive ? `font-extrabold text-green-500 before:w-full ` : ""} `
+                }}
                 >
                   Login
                 </NavLink>
@@ -115,18 +104,23 @@ function Navbar() {
                 : <div className='flex flex-col p-2 gap-3'>
                   <NavLink
                     to="/auth/register"
+                    className={({ isActive }) => {
+                      return `flex items-center lg:hover:before:w-full before:transition-[width] before:duration-300 before:h-0  lg:hover:before:h-[0.9px] before:absolute before:bg-green-500 before:bottom-[-2px] before:left-0  relative before:w-0 hover:text-green-500 transition-colors ${isActive ? `font-extrabold text-green-500 before:w-full ` : ""} `
+                  }}
                   >
                     Registrition
                   </NavLink>
                   <NavLink
                     to="/auth/login"
+                    className={({ isActive }) => {
+                      return `flex items-center lg:hover:before:w-full before:transition-[width] before:duration-300 before:h-0  lg:hover:before:h-[0.9px] before:absolute before:bg-green-500 before:bottom-[-2px] before:left-0  relative before:w-0 hover:text-green-500 transition-colors ${isActive ? `font-extrabold text-green-500 before:w-full ` : ""} `
+                  }}
                   >
                     Login
                   </NavLink>
                 </div>}
             </Menu>
           </Box>
-
         </Toolbar>
       </Container>
     </AppBar>

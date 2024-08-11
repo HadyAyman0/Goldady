@@ -96,8 +96,6 @@ export default function Registration() {
                         </div>
                     </form>
                 </div>
-
-
             </section>
         </>
     )

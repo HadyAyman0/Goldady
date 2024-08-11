@@ -7,9 +7,9 @@ import UserProvider from './Context/User.context'
 import { Toaster } from 'react-hot-toast'
 import Profile from './Pages/Profile/Profile'
 import Protectedroute from './components/Protectedroute/Protectedroute'
+import NotFound from './Pages/Notfound/NotFound'
 
 function App() {
-
   const routes = createBrowserRouter([
     {
       path: "/",
@@ -17,14 +17,16 @@ function App() {
         <Layout />
       </Protectedroute>, 
       children: [
-        { index: true, element: <Profile/> }
+        { index: true, element: <Profile/> },
+        {path: "*" , element:<NotFound/>},
       ]
     },
     {
       path:"/auth" , element: <Layout/> , 
       children : [
         {path : "login" , element: <Login/>},
-        {path: "register" , element:<Registration/>}
+        {path: "register" , element:<Registration/>},
+        {path: "*" , element:<NotFound/>},
       ]
     }
   ])
