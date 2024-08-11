@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.backroundImage {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(https://www.goldavenue.com/_next/image?url=https%3A%2F%2Fassets.goldavenue.com%2Fuploads%2Fblog%2Farticle%2Fshow_image%2F1206%2Fraw_webp_guide_main.webp&w=3840&q=75);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.custom-textfield {
+    width: 100%;
+  }
+  
+  .custom-textfield .MuiInputLabel-root {
+    color: white;
+  }
+  
+  .custom-textfield .MuiOutlinedInput-root > fieldset {
+    border-color: white;
+  }
+  
+  .custom-textfield .MuiOutlinedInput-root:hover > fieldset {
+    border-color: white;
+  }
+  
+  .custom-textfield .MuiOutlinedInput-root.Mui-focused > fieldset {
+    border-color: white;
+  }
+  
+  .custom-textfield .MuiInputBase-input {
+    color: white;
+  }
+  
+ .custom-textfield .MuiInputLabel-root.Mui-focused {
+    color: white;
+  }
+  
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active{
+     -webkit-box-shadow: 0 0 0 30px #0f0f0fb8 inset !important;
+     -webkit-text-fill-color: #ffffff !important;
+  }
